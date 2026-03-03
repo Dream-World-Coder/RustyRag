@@ -1,0 +1,28 @@
+[package]
+name = "rusty-rag"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = [
+  "Window",
+  "IdbFactory",
+  "IdbDatabase",
+  "IdbTransaction",
+  "IdbObjectStore",
+  "IdbRequest"
+] }
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+lru = "0.12"
+# Note: SIMD is handled via core::arch::wasm32
+
+[profile.release]
+opt-level = 3
+lto = true
